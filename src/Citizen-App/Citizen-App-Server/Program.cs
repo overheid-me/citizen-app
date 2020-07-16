@@ -1,4 +1,7 @@
+using Citizen_App_Repository;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Citizen_App_Server
@@ -16,5 +19,10 @@ namespace Citizen_App_Server
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        {
+            Initializer.Initialize(services, configuration);
+        }
     }
 }
