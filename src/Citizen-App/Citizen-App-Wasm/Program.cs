@@ -1,4 +1,4 @@
-using Citizen_App_Repository;
+using Citizen_App_Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,16 +13,12 @@ namespace Citizen_App_Wasm
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            Initializer.Initialize(builder.Services, builder.Configuration);
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
+            
             await builder.Build().RunAsync();
-        }
-
-        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
-        {
-            Initializer.Initialize(services, configuration);
         }
     }
 }

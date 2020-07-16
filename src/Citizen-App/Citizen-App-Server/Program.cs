@@ -1,8 +1,7 @@
-using Citizen_App_Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 
 namespace Citizen_App_Server
 {
@@ -15,14 +14,14 @@ namespace Citizen_App_Server
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostContext, config) =>
+                {
+                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                    config.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-
-        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
-        {
-            Initializer.Initialize(services, configuration);
-        }
     }
 }
