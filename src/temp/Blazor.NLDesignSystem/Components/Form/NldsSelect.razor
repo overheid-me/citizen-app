@@ -1,0 +1,38 @@
+﻿@namespace Blazor.NLDesignSystem.Components
+<div class="input @LabelAlignmentStyle @(!IsValid ? "input--invalid" : "")">
+    <CascadingValue Name="ElementIdentifier" Value="@Identifier">
+        @if (LabelAlignment == LabelAlignment.Horizontal)
+        {
+            <div>
+                @Label
+                @Hint
+            </div>
+        }
+        else
+        {
+            @Label
+            @Hint
+        }
+        @if (!IsValid)
+        {
+            <NldsError>@((MarkupString)ErrorText)</NldsError>
+        }
+    </CascadingValue>
+    <select id="@Identifier"
+            class="input__control input__control@(SizeAppendix) input__control--search"
+            @bind="Value"
+            @bind:event="onchange"
+            @onchange:preventDefault
+            @attributes="GetAttributes()"
+            disabled="@IsDisabled"
+            required="@IsRequired">
+        @if (ShowEmptyValue)
+        {
+            <option value="">@EmptyValueDescription</option>
+        }
+        @foreach (var item in Items)
+        {
+            <option value="@item.Value" disabled="@item.IsDisabled" selected="@(item.Value == Value)">@((MarkupString)item.Description)</option>
+        }
+    </select>
+</div>

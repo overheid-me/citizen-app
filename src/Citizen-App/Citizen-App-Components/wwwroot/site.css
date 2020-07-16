@@ -1,0 +1,41 @@
+﻿/*Header*/
+.top-nav--donkerblauw .nav__link, .top-nav--donkerblauw .nav__link:visited, .top-nav--donkerblauw .top-nav__block-item, .top-nav--donkerblauw .top-nav__block a {
+    color: #b4b4b4 !important;
+    background-color: transparent !important;
+}
+
+    .top-nav--donkerblauw .nav__link.nav__link--active {
+        color: #005ea5 !important;
+        border-color: transparent !important;
+        border-bottom-color: #005ea5 !important;
+    }
+
+.top-nav--donkerblauw {
+    background-color: #fff !important;
+}
+
+.top-nav-autoresize .nav__link {
+    font-size: 0.8em !important;
+    font-weight: 400;
+}
+
+nav.top-nav .nav__item {
+    width: 25%;
+    text-align: center;
+}
+
+    nav.top-nav .nav__item a {
+        white-space: nowrap;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    nav.top-nav .nav__item i.icon {
+        font-size: 2em;
+        display: block;
+    }
+
+/*Content*/
+.content {
+    min-height: 400px;
+}

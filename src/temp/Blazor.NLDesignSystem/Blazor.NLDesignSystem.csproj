@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RazorLangVersion>3.0</RazorLangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\dist\settings\**" />
+    <Compile Remove="wwwroot\dist\tools\**" />
+    <Content Remove="wwwroot\dist\settings\**" />
+    <Content Remove="wwwroot\dist\tools\**" />
+    <EmbeddedResource Remove="wwwroot\dist\settings\**" />
+    <EmbeddedResource Remove="wwwroot\dist\tools\**" />
+    <None Remove="wwwroot\dist\settings\**" />
+    <None Remove="wwwroot\dist\tools\**" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.4" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\dist\core\bootstrapgrid\mixins\" />
+    <Folder Include="wwwroot\dist\core\components\" />
+    <Folder Include="wwwroot\dist\core\elements\" />
+    <Folder Include="wwwroot\dist\core\generic\" />
+    <Folder Include="wwwroot\dist\core\objects\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\interop\collapse.js" />
+    <None Include="wwwroot\interop\navigation.js" />
+  </ItemGroup>
+
+</Project>
