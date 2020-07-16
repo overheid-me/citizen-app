@@ -8,78 +8,28 @@
         <Description>123456789</Description>
     </NldsDefinitionListItem>
 </NldsDefinitionList>
-<NldsCollapseWrapper>
-    <NldsCollapse>
-        <Title>Persoonsgegevens</Title>
-        <Content>
-            <NldsCollapseContent>
-                <NldsDefinitionList>
-                    <NldsDefinitionListItem ShowHorizontal="true" Title="Naam">
-                        <Description>Katja Jansen</Description>
-                    </NldsDefinitionListItem>
-                    <NldsDefinitionListItem ShowHorizontal="true" Title="Geslacht">
-                        <Description>Vrouw</Description>
-                    </NldsDefinitionListItem>
-                    <NldsDefinitionListItem ShowHorizontal="true" Title="Geb. datum">
-                        <Description>18-09-1981</Description>
-                    </NldsDefinitionListItem>
-                    <NldsDefinitionListItem ShowHorizontal="true" Title="Adres">
-                        <Description>Streetname 12</Description>
-                        <Action><NldsDefinitionListAction LinkScreenReaderDescription="Information"><i class="icon icon-info"></i></NldsDefinitionListAction></Action>
-                    </NldsDefinitionListItem>
-                    <NldsDefinitionListItem ShowHorizontal="true" Title="Postcode">
-                        <Description>3066 AB</Description>
-                    </NldsDefinitionListItem>
-                    <NldsDefinitionListItem ShowHorizontal="true" Title="...">
-                        <Description>...</Description>
-                    </NldsDefinitionListItem>
-                </NldsDefinitionList>
-            </NldsCollapseContent>
-        </Content>
-    </NldsCollapse>
-</NldsCollapseWrapper>
 
-<NldsCollapseWrapper>
-    <NldsCollapse>
-        <Title>Werk en Inkomen</Title>
-        <Content>
-            <NldsCollapseContent>
-                <NldsDefinitionList>
-                    <NldsDefinitionListItem ShowHorizontal="true" Title="...">
-                        <Description>...</Description>
-                    </NldsDefinitionListItem>
-                </NldsDefinitionList>
-            </NldsCollapseContent>
-        </Content>
-    </NldsCollapse>
-</NldsCollapseWrapper>
-
-<NldsCollapseWrapper>
-    <NldsCollapse>
-        <Title>Auto en Vervoer</Title>
-        <Content>
-            <NldsCollapseContent>
-                <NldsDefinitionList>
-                    <NldsDefinitionListItem ShowHorizontal="true" Title="...">
-                        <Description>...</Description>
-                    </NldsDefinitionListItem>
-                </NldsDefinitionList>
-            </NldsCollapseContent>
-        </Content>
-    </NldsCollapse>
-</NldsCollapseWrapper>
-
-<NldsCollapseWrapper>
-    <NldsCollapse>
-        <Title>Eigen Woning</Title>
-        <Content>
-            <NldsCollapseContent>
-                <NldsDefinitionList>
-                    <NldsDefinitionListItem ShowHorizontal="true" Title="...">
-                        <Description>...</Description>
-                    </NldsDefinitionListItem>
-                </NldsDefinitionList>
-            </NldsCollapseContent>
-        </Content>
-    </NldsCollapse>
-</NldsCollapseWrapper>
+@foreach (var kluisSection in KluisValues.Keys )
+{
+    if (!KluisValues[kluisSection]?.Any() ?? true)
+    {
+        continue;
+    }
+    <NldsCollapseWrapper>
+        <NldsCollapse>
+            <Title>@kluisSection</Title>
+            <Content>
+                <NldsCollapseContent>
+                    <NldsDefinitionList>
+                        @foreach (var item in KluisValues[kluisSection])
+                        {
+                            <NldsDefinitionListItem ShowHorizontal="true" Title="@item.Key">
+                                <Description>@((MarkupString)item.Value)</Description>
+                            </NldsDefinitionListItem>
+                        }
+                    </NldsDefinitionList>
+                </NldsCollapseContent>
+            </Content>
+        </NldsCollapse>
+    </NldsCollapseWrapper>
+}
