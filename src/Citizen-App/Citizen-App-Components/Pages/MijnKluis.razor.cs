@@ -3,8 +3,7 @@ using HaalCentraal.BrpBevragen;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Reflection;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Citizen_App_Components.Pages
@@ -14,67 +13,69 @@ namespace Citizen_App_Components.Pages
         [Inject]
         private IBRPClientController BRPClientController { get; set; }
 
-        public IDictionary<string, IDictionary<string, string>> KluisValues { get; set; } = new Dictionary<string, IDictionary<string, string>>();
+        public IDictionary<string, IList<MijnKluisElement>> KluisValues { get; set; } = new Dictionary<string, IList<MijnKluisElement>>();
 
-        protected async override Task OnParametersSetAsync()
+        protected async override Task OnAfterRenderAsync(bool firstRender)
         {
-            try
-            {
-                var person = await BRPClientController.GetPersonDataByBsn("999993872");
-                MapPersonToKluisValues(person);
-            }
-            catch
-            {
-                return;
-            }
-            finally
-            {
-                await base.OnParametersSetAsync();
-            }
+            var person = await BRPClientController.GetPersonDataByBsn("999993872");
+            MapPersonToKluisValues(person);
+            await base.OnAfterRenderAsync(firstRender);
         }
 
         private void MapPersonToKluisValues(IngeschrevenPersoonHal person)
         {
-            KluisValues["Persoonsgegevens"] = MapPersonDetails(person);
-            KluisValues["Werk en Inkomen"] = MapWork(person);
-            KluisValues["Auto en Vervoer"] = MapAutoEnVervoer(person);
-            KluisValues["Eigen Woning"] = MapHousing(person);
+            MapPersonDetails(KluisValues["Persoonsgegevens"] = new List<MijnKluisElement>(), person);
+            MapAutoEnVervoer(KluisValues["Werk en Inkomen"] = new List<MijnKluisElement>(), person);
+            MapAutoEnVervoer(KluisValues["Auto en Vervoer"] = new List<MijnKluisElement>(), person);
+            MapHousing(KluisValues["Eigen Woning"] = new List<MijnKluisElement>(), person);
+            StateHasChanged();
         }
 
-        private IDictionary<string, string> MapPersonDetails(IngeschrevenPersoonHal person)
+        private void MapPersonDetails(IList<MijnKluisElement> dataset, IngeschrevenPersoonHal person)
         {
-            var result = new Dictionary<string, string>();
-            AssignValue(result, "Voorletters", person.Naam.Voorletters);
-            AssignValue(result, "Voornamen", person.Naam.Voornamen);
+            AssignValue(dataset, "Voorletters", person.Naam.Voorletters);
+            AssignValue(dataset, "Voornamen", person.Naam.Voornamen);
             var voorVoegsel = !string.IsNullOrWhiteSpace(person.Naam.Voorvoegsel) ? $"{person.Naam.Voorvoegsel} " : string.Empty;
-            AssignValue(result, "Achternaam", $"{voorVoegsel}{person.Naam.Geslachtsnaam}");
-            return result;
+            AssignValue(dataset, "Achternaam", $"{person.Naam.Geslachtsnaam}");
+            AssignValue(dataset, "Geslacht", $"{voorVoegsel}{person.Geslachtsaanduiding}");
+            var birthday = new DateTime(person.Geboorte.Datum.Jaar, person.Geboorte.Datum.Maand, person.Geboorte.Datum.Dag);
+            AssignValue(dataset, "Geboortedatum", birthday.ToString("dd-MM-yyyy"));
+            AssignValue(dataset, "Adres", $"{person.Verblijfplaats.Straatnaam} {person.Verblijfplaats.Huisnummer} {person.Verblijfplaats.Huisletter}");
+            AssignValue(dataset, "Postcode", $"{person.Verblijfplaats.Postcode}");
+            AssignValue(dataset, "Plaats", $"{person.Verblijfplaats.Woonplaatsnaam}");
         }
 
-        private void AssignValue(Dictionary<string, string> result, string key, string value)
+        private void MapWork(IList<MijnKluisElement> dataset, IngeschrevenPersoonHal person)
+        {
+        }
+
+        private void MapAutoEnVervoer(IList<MijnKluisElement> dataset, IngeschrevenPersoonHal person)
+        {
+        }
+
+        private void MapHousing(IList<MijnKluisElement> dataset, IngeschrevenPersoonHal person)
+        {
+        }
+
+        private void AssignValue(IList<MijnKluisElement> list, string description, string value, int? order = null)
         {
             if (!string.IsNullOrWhiteSpace(value))
             {
-                result[key] = value;
+                var mijnKluisElement = new MijnKluisElement
+                {
+                    Description = description,
+                    Value = value,
+                    Order = order ?? (!list.Any() ? 10 : list.Max(l => l.Order) + 10)
+                };
+                list.Add(mijnKluisElement);
             }
         }
+    }
 
-        private IDictionary<string, string> MapWork(IngeschrevenPersoonHal person)
-        {
-            var result = new Dictionary<string, string>();
-            return result;
-        }
-
-        private IDictionary<string, string> MapAutoEnVervoer(IngeschrevenPersoonHal person)
-        {
-            return null;
-        }
-
-        private IDictionary<string, string> MapHousing(IngeschrevenPersoonHal person)
-        {
-            var result = new Dictionary<string, string>();
-            result["WOZ"] = "&euro; 179.000";
-            return result;
-        }
+    public class MijnKluisElement
+    {
+        public string Description { get; set; }
+        public int Order { get; set; }
+        public string Value { get; set; }
     }
 }

@@ -21,10 +21,14 @@
             <Content>
                 <NldsCollapseContent>
                     <NldsDefinitionList>
-                        @foreach (var item in KluisValues[kluisSection])
+                        @foreach (var mijnKluisElement in KluisValues[kluisSection].OrderBy(k => k.Order))
                         {
-                            <NldsDefinitionListItem ShowHorizontal="true" Title="@item.Key">
-                                <Description>@((MarkupString)item.Value)</Description>
+                            if (string.IsNullOrWhiteSpace(mijnKluisElement.Value))
+                            {
+                                continue;
+                            }
+                            <NldsDefinitionListItem ShowHorizontal="true" Title="@mijnKluisElement.Description">
+                                <Description>@((MarkupString)mijnKluisElement.Value)</Description>
                             </NldsDefinitionListItem>
                         }
                     </NldsDefinitionList>
