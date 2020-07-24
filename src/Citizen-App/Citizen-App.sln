@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citizen-App-Server", "Citiz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citizen-App-Components", "Citizen-App-Components\Citizen-App-Components.csproj", "{7E935799-4AC1-4929-AB3B-F503AFD08FFA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.NLDesignSystem", "..\temp\Blazor.NLDesignSystem\Blazor.NLDesignSystem.csproj", "{944FB229-BDA4-4AEE-95EA-01FCF2F08A43}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Citizen-App-Repository", "Citizen-App-Repository\Citizen-App-Repository.csproj", "{10E1C6FE-E227-4C52-A1A7-DFA5A8ACE0A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citizen-App-Repository", "Citizen-App-Repository\Citizen-App-Repository.csproj", "{10E1C6FE-E227-4C52-A1A7-DFA5A8ACE0A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{7E935799-4AC1-4929-AB3B-F503AFD08FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E935799-4AC1-4929-AB3B-F503AFD08FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E935799-4AC1-4929-AB3B-F503AFD08FFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{944FB229-BDA4-4AEE-95EA-01FCF2F08A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{944FB229-BDA4-4AEE-95EA-01FCF2F08A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{944FB229-BDA4-4AEE-95EA-01FCF2F08A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{944FB229-BDA4-4AEE-95EA-01FCF2F08A43}.Release|Any CPU.Build.0 = Release|Any CPU
 		{10E1C6FE-E227-4C52-A1A7-DFA5A8ACE0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10E1C6FE-E227-4C52-A1A7-DFA5A8ACE0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10E1C6FE-E227-4C52-A1A7-DFA5A8ACE0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU

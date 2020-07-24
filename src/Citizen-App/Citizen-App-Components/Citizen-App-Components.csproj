@@ -14,7 +14,6 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\temp\Blazor.NLDesignSystem\Blazor.NLDesignSystem.csproj" />
     <ProjectReference Include="..\Citizen-App-Repository\Citizen-App-Repository.csproj" />
   </ItemGroup>
 
