@@ -17,8 +17,11 @@ namespace Citizen_App_Components.Pages
 
         protected async override Task OnAfterRenderAsync(bool firstRender)
         {
-            var person = await BRPClientController.GetPersonDataByBsn("999993872");
-            MapPersonToKluisValues(person);
+            if (firstRender)
+            {
+                var person = await BRPClientController.GetPersonDataByBsn("999993872");
+                MapPersonToKluisValues(person);
+            }
             await base.OnAfterRenderAsync(firstRender);
         }
 
