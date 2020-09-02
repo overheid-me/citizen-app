@@ -10,6 +10,9 @@ namespace Citizen_App_Components.Pages
 {
     public partial class MijnKluis
     {
+        [Parameter]
+        public string BSN { get; set; }
+
         [Inject]
         private IBRPClientController BRPClientController { get; set; }
 
@@ -19,7 +22,8 @@ namespace Citizen_App_Components.Pages
         {
             if (firstRender)
             {
-                var person = await BRPClientController.GetPersonDataByBsn("999993872");
+                BSN = "999993871";
+                var person = await BRPClientController.GetPersonDataByBsn(BSN);
                 MapPersonToKluisValues(person);
             }
             await base.OnAfterRenderAsync(firstRender);

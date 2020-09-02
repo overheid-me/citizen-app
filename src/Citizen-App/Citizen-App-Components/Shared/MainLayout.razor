@@ -1,25 +1,42 @@
 ﻿@inherits LayoutComponentBase
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@using Newtonsoft.Json;
+@using  System.Linq;
+@inject AuthenticationStateProvider AuthenticationStateProvider
 <NldsSkiplink>Ga direct naar inhoud</NldsSkiplink>
 <NldsNavigation Color="Color.DonkerBlauw">
     <NldsNavigationBlock>
-        <NldsNavigationItem Uri="mijnzaken" Title="Home"><NldsIcon Icon="Icon.Home" />Mijn zaken</NldsNavigationItem>
-        <NldsNavigationItem Uri="mijnkluis" Title="Mijn Kluis"><NldsIcon Icon="Icon.Secure" />Mijn Kluis</NldsNavigationItem>
-        <NldsNavigationItem Uri="tijdlijn" Title="Tijdlijn"><NldsIcon Icon="Icon.List" />Tijdlijn</NldsNavigationItem>
-        <NldsNavigationItem Uri="vragen" Title="Vragen"><NldsIcon Icon="Icon.Question" />Vragen</NldsNavigationItem>
+        <AuthorizeView>
+            <NotAuthorized>
+                <NldsNavigationItem Uri="/aanmelden?redirectUri=/" Title="Aanmelden"><NldsIcon Icon="Icon.Secure" />Aanmelden</NldsNavigationItem>
+            </NotAuthorized>
+            <Authorized>
+                <NldsNavigationItem Uri="mijnzaken" Title="Home"><NldsIcon Icon="Icon.Home" />Mijn zaken</NldsNavigationItem>
+                <NldsNavigationItem Uri="mijnkluis" Title="Mijn Kluis"><NldsIcon Icon="Icon.Secure" />Mijn Kluis</NldsNavigationItem>
+                <NldsNavigationItem Uri="tijdlijn" Title="Tijdlijn"><NldsIcon Icon="Icon.List" />Tijdlijn</NldsNavigationItem>
+                <NldsNavigationItem Uri="vragen" Title="Vragen"><NldsIcon Icon="Icon.Question" />Vragen</NldsNavigationItem>
+                <NldsNavigationItem Uri="afmelden" Title="Aanmelden"><NldsIcon Icon="Icon.Secure" />Afmelden</NldsNavigationItem>
+            </Authorized>
+        </AuthorizeView>
     </NldsNavigationBlock>
 </NldsNavigation>
-<main class="smain" id="content" tabindex="-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-8 col-xl-offset-2 col-lg-10 col-lg-offset-1">
-                <div class="content-background">
-                    <div class="content">
-                        <div class="docs-section" id="grid">
-                            @Body
+<AuthorizeView>
+    <Authorized>
+        <main class="smain" id="content" tabindex="-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-xl-offset-2 col-lg-10 col-lg-offset-1">
+                        <div class="content-background">
+                            <div class="content">
+                                <div class="docs-section" id="grid">
+                                     @Body
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</main>
+        </main>
+    </Authorized>
+</AuthorizeView>
