@@ -7,7 +7,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Citizen_App_Server
@@ -51,7 +55,19 @@ namespace Citizen_App_Server
                 // Configure the Auth0 Client ID and Client Secret
                 options.ClientId = Configuration["oidc:ClientId"];
                 options.ClientSecret = Configuration["oidc:ClientSecret"];
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuers = Array.ConvertAll(Configuration["oidc:JWKSValidIssuers"].Split(','), p => p.Trim()),
+                    IssuerSigningKeyResolver = (token, securityToken, kid, parameters) =>
+                    {
+                        var client = new HttpClient();
+                        var response = client.GetAsync(Configuration["oidc:JWKS"]).Result;
+                        var responseString = response.Content.ReadAsStringAsync().Result;
+                        var keys = JsonConvert.DeserializeObject<JwkList>(responseString);
 
+                        return keys.Keys;
+                    },
+                };
                 // Set response type to code
                 options.ResponseType = "code";
 
@@ -127,6 +143,11 @@ namespace Citizen_App_Server
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+        }
+
+        public class JwkList
+        {
+            public List<JsonWebKey> Keys { get; set; }
         }
     }
 }
