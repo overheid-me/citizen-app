@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Westwind.AspNetCore.LiveReload;
 
 namespace Citizen_App_Server
 {
@@ -30,6 +31,7 @@ namespace Citizen_App_Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLiveReload();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             Initializer.Initialize(services, Configuration);
@@ -119,6 +121,7 @@ namespace Citizen_App_Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseLiveReload();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
