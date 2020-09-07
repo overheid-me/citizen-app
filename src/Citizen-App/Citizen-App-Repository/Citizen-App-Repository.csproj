@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>.NET5</TargetFramework>
     <RootNamespace>Citizen_App_Repository</RootNamespace>
   </PropertyGroup>
 
