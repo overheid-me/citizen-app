@@ -1,0 +1,61 @@
+﻿@page "/test"
+<h1>Werk en Inkomen</h1>
+<h2>Loon uit werk doorgeven</h2>
+<p>
+    De overheidsinstanties gaan aan de slag met het verwerken van de gedeelde gegevens. 
+    Bekijk voorlopig wat de gevolgen voor uw situatie zouden kunnen zijn.
+</p>
+<NldsNotification Type="Notification.Error" Title="Dit is een voorlopige berekening">
+    Uw loon uit werk is nog niet verwerkt door de gemeente.
+</NldsNotification>
+<NldsTable Identifier="tabelbeschrijving" IsStriped="false" IsHoverable="false">
+    <Header>
+        <NldsTableRow>
+            <NldsTableCell Class="background--grijs-6"><center>Uw situatie</center></NldsTableCell>
+            <NldsTableCell Class="background--grijs-3"><center>Huidig</center></NldsTableCell>
+            <NldsTableCell Class="background--hemelblauw"><center>Nieuw</center></NldsTableCell>
+        </NldsTableRow>
+    </Header>
+    <Body>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true">
+                <div style="float:left">
+                    <NldsIcon Icon="Icon.ChevronLeft" />
+                </div>
+                <div style="float: right">
+                    <NldsIcon Icon="Icon.ChevronRight" />
+                </div>
+            </NldsTableCell>
+            <NldsTableCell IsHeader="true">Dec 2019</NldsTableCell>
+            <NldsTableCell IsHeader="true">Jan 2020</NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell>Bijstandsnorm</NldsTableCell>
+            <NldsTableCell Class="background--grijs-1"><Money Amount="1050" /></NldsTableCell>
+            <NldsTableCell Class="background--lichtblauw-tint-1"><Money Amount="1052" /></NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true">Loon uit werk</NldsTableCell>
+            <NldsTableCell Class="background--grijs-1"><center><NldsIcon Icon="Icon.Cross" /></center></NldsTableCell>
+            <NldsTableCell Class="background--rood-tint-2"><Money Amount="-255" /></NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true">Kinderblijslag</NldsTableCell>
+            <NldsTableCell Class="background--grijs-1"><Money Amount="300" /></NldsTableCell>
+            <NldsTableCell Class="background--lichtblauw-tint-1"><Money Amount="300" /></NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true">Alimentatie</NldsTableCell>
+            <NldsTableCell Class="background--grijs-1"><Money Amount="150" /></NldsTableCell>
+            <NldsTableCell Class="background--lichtblauw-tint-1"><Money Amount="150" /></NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true"><b>Totaal per maand</b></NldsTableCell>
+            <NldsTableCell Class="background--grijs-3"><b><Money Amount="1500" /></b></NldsTableCell>
+            <NldsTableCell Class="background--hemelblauw"><b><Money Amount="1247" /></b></NldsTableCell>
+        </NldsTableRow>
+    </Body>
+</NldsTable>
+@code {
+
+}
