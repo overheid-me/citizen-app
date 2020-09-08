@@ -1,0 +1,34 @@
+﻿@page "/mijn-kluis-gegevens-ophalen"
+<h1>Gegevens ophalen</h1>
+<NldsSpinner FullPage="false">
+    <DisplayText>Uw gegevens worden in uw digitale kluis getoond.</DisplayText>
+    <ScreenReaderText>Uw gegevens worden in uw digitale kluis getoond.</ScreenReaderText>
+</NldsSpinner>
+<NldsCollapseWrapper>
+    <NldsCollapse>
+        <Title>Telefoonnummers</Title>
+        <Content>
+            <NldsCollapseContent Style="padding-left:0px;padding-right:0px;">
+                <NldsNotification Type="Notification.Warning" Title="Meerdere Telefoonnummers">
+                    Er zijn meerdere telefoonnummers gevonden. Vink hieronder aan welke nummers in uw kluis moeten worden opgeslagen.
+                </NldsNotification>
+                <NldsForm Style="padding:0px;">
+                    <NldsCheckbox Identifier="ch1" @bind-Items="Checkbox1">
+                    </NldsCheckbox>
+                    <NldsButton>Bewaar in mijn kluis</NldsButton>
+                    <small>
+                        De gewijzigde gegevens worden automatisch doorgegeven aan de instanties met toegang tot uw gegevens. 
+                        Zij beschikken dan allemaal over dezelfde gegevens.
+                    </small>
+                </NldsForm>
+            </NldsCollapseContent>
+        </Content>
+
+    </NldsCollapse>
+</NldsCollapseWrapper>
+@code {
+    IEnumerable<CheckboxItem> Checkbox1 = new List<CheckboxItem>() {
+            new CheckboxItem() { Description = "010 1234567<br/>Bekend bij CAK, laatste wijziging 12-10-1998", Value = "010 1234567", IsChecked = true },
+            new CheckboxItem() { Description = "010 6789123<br/>Bekend bij UWV, laatste wijziging 12-08-2017", Value = "010 6789123" },
+        };
+}
