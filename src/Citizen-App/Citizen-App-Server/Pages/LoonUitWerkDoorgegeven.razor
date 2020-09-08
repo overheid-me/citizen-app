@@ -1,0 +1,50 @@
+﻿@page "/loon-uit-werk-doorgegeven"
+<h1>Werk en Inkomen</h1>
+<h2>Loon uit werk doorgeven</h2>
+<NldsNotification Type="Notification.Success" Title="">
+    Uw salarisgegevens zijn door uw gemeente ontvangen
+</NldsNotification>
+<p>
+    Bekijk wat het gevolg voor u is.
+</p>
+<NldsTable Identifier="tabelbeschrijving" IsStriped="false" IsHoverable="false">
+    <Header>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true" Class="background--grijs-6">Uw huidige situatie</NldsTableCell>
+            <NldsTableCell IsHeader="true" Class="background--grijs-6" />
+        </NldsTableRow>
+    </Header>
+    <Body>
+        <NldsTableRow>
+            <NldsTableCell>Bijstandsnorm</NldsTableCell>
+            <NldsTableCell Class="background--lichtblauw-tint-1"><Money Amount="1052" /></NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true">Loon uit werk</NldsTableCell>
+            <NldsTableCell Class="background--rood-tint-2"><Money Amount="-255" /></NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true">Kinderblijslag</NldsTableCell>
+            <NldsTableCell Class="background--lichtblauw-tint-1"><Money Amount="300" /></NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true">Alimentatie</NldsTableCell>
+            <NldsTableCell Class="background--lichtblauw-tint-1"><Money Amount="150" /></NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true">Huurtoeslag</NldsTableCell>
+            <NldsTableCell Class="background--grijs-1"><center><NldsIcon Icon="Icon.Cross" /></center></NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true">Zorgtoeslag</NldsTableCell>
+            <NldsTableCell Class="background--grijs-1"><center><NldsIcon Icon="Icon.Cross" /></center></NldsTableCell>
+        </NldsTableRow>
+        <NldsTableRow>
+            <NldsTableCell IsHeader="true"><b>Totaal per maand</b></NldsTableCell>
+            <NldsTableCell Class="background--hemelblauw"><b><Money Amount="1247" /></b></NldsTableCell>
+        </NldsTableRow>
+    </Body> 
+</NldsTable>
+@code {
+
+}
