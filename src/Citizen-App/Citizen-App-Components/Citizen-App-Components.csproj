@@ -9,6 +9,9 @@
 
   <ItemGroup>
     <PackageReference Include="Blazorized.NLDesignSystem" Version="0.1.1-beta3" />
+    <PackageReference Include="ChartJs.Blazor" Version="2.0.0-preview1" />
+    <PackageReference Include="Deedle" Version="2.2.0" />
+    <PackageReference Include="Deedle.Math" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0-preview.8.20414.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.0-preview.8.20414.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0-preview.8.20414.8" />
