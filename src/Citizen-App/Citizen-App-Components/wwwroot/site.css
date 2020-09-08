@@ -1,36 +1,26 @@
 ﻿/*Header*/
 .top-nav--donkerblauw .nav__link, .top-nav--donkerblauw .nav__link:visited, .top-nav--donkerblauw .top-nav__block-item, .top-nav--donkerblauw .top-nav__block a {
-    text-align:center;
+    text-align: center;
     color: #b4b4b4 !important;
     background-color: transparent !important;
-    margin-left:auto;
-    margin-right:auto;
 }
 
 .top-nav .container > div {
-        width:100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-.nav .div .div {
-    background-color:black;
+    width: 100%;
 }
 
 .top-nav--donkerblauw {
     background-color: #fff !important;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .top-nav-autoresize .nav__link {
     font-size: 0.8em !important;
     font-weight: 400;
-    margin-left: auto;
-    margin-right: auto;
+
 }
 
 nav.top-nav .nav__item {
+    font-size: 0.8em;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -40,17 +30,12 @@ nav.top-nav .nav__item a {
     white-space: nowrap;
     padding-left: 0px;
     padding-right: 0px;
-    width: 100px;
+    width: 60px;
+
 }
 
     nav.top-nav .nav__item i.icon {
         font-size: 2em;
         display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
 
-/*Content*/
-.content {
-    min-width: 400px;
-}
+    }
